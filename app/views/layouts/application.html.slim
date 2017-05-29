@@ -1,0 +1,44 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Pictagram
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    meta content="width=device-width, initial-scale=1" name="viewport" /
+    script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+
+  body
+    .centered
+      p.notice= notice
+      p.alert= alert
+      = yield
+    .container
+      nav.navbar.navbar-default
+        .container-fluid
+          .navbar-header
+            button.navbar-toggle.collapsed data-target="#navbar2" data-toggle="collapse" type="button"
+              span.sr-only Toggle navigation
+            a.navbar-brand href="/"
+              img alt="Pictagram logo" src="/assets/logo.png" /
+          #navbar2.navbar-collapse.collapse
+            ul.nav.navbar-nav.navbar-right
+              li
+                = link_to("Home", root_path)
+              li
+                a href="#"  About
+              li
+                a href="#"  Contact
+              - if user_signed_in?
+                  li.dropdown
+                    a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"
+                      = current_user.email
+                      span.caret
+                    ul.dropdown-menu role="menu"
+                      li
+                        = link_to("Edit profile", edit_user_registration_path)
+                      li.divider
+                      li
+                        = link_to("Log out", users_sign_out_path)
