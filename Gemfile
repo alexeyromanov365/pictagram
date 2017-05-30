@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'pry'
+gem 'pry-rails'
 gem 'slim'
 gem 'devise'
 gem 'bootstrap-sass'

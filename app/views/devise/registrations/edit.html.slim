@@ -1,27 +1,84 @@
 h2
-  | Edit #{resource_name.to_s.humanize}
-= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :first_name
-    br
-    = f.text_field :first_name, autofocus: true
-  .field
-    = f.label :last_name
-    br
-    = f.text_field :last_name
-  .field
-    = f.label :gender
-    br
-    = f.text_field :gender
-  .field
-    = f.label :about_me
-    br
-    = f.text_field :about_me
-  .actions
-    = f.submit "Update"
-p
-  = link_to "Change password", edit_user_password_path
-p
-  | #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
-= link_to "Back", :back
+  | Update #{resource_name.to_s.humanize}
+form
+  .form-group
+    label for="exampleInputEmail1"  Email address
+    input#exampleInputEmail1.form-control aria-describedby="emailHelp" placeholder=("Enter email") type="email" /
+  .form-group
+    label for="exampleInputPassword1"  Password
+    input#exampleInputPassword1.form-control placeholder="Password" type="password" /
+  .form-group
+    label for="exampleSelect1"  Example select
+    select#exampleSelect1.form-control
+      option 1
+      option 2
+      option 3
+      option 4
+      option 5
+  .form-group
+    label for="exampleSelect2"  Example multiple select
+    select#exampleSelect2.form-control multiple="multiple"
+      option 1
+      option 2
+      option 3
+      option 4
+      option 5
+  .form-group
+    label for="exampleTextarea"  Example textarea
+    textarea#exampleTextarea.form-control rows="3"
+  .form-group
+    label for="exampleInputFile"  File input
+    input#exampleInputFile.form-control-file aria-describedby="fileHelp" type="file" /
+    small#fileHelp.form-text.text-muted This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.
+  fieldset.form-group
+    legend Radio buttons
+    .form-check
+      label.form-check-label
+        input#optionsRadios1.form-check-input checked="checked" name="optionsRadios" type="radio" value="option1" /
+        | Option one is this and that—be sure to include why it's great
+    .form-check
+      label.form-check-label
+        input#optionsRadios2.form-check-input name="optionsRadios" type="radio" value="option2" /
+        | Option two can be something else and selecting it will deselect option one
+    .form-check.disabled
+      label.form-check-label
+        input#optionsRadios3.form-check-input disabled="disabled" name="optionsRadios" type="radio" value="option3" /
+        | Option three is disabled
+  .form-check
+    label.form-check-label
+      input.form-check-input type="checkbox" /
+      | Check me out
+  button.btn.btn-primary type="submit"  Submit
+
+
+/ h2
+/   | Update #{resource_name.to_s.humanize}
+/ = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+/   = devise_error_messages!
+/   .field
+/     = f.label :first_name
+/     br
+/     = f.text_field :first_name, autofocus: true
+/   .field
+/     = f.label :last_name
+/     br
+/     = f.text_field :last_name
+/   .field
+/     = f.label :gender
+/     br
+/     = f.text_field :gender
+/   .field
+/     = f.label :about_me
+/     br
+/     = f.text_field :about_me
+/   .field
+/     = f.label :current_password
+/     br
+/     = f.password_field :current_password
+/   .actions
+/     = f.submit "Update"
+/ p
+/   = link_to "Change password", edit_user_password_path
+/ p
+/   | #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+/ = link_to "Back", :back
