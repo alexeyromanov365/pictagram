@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :albums
   get 'person/profile'
 
   root to: "person#profile"

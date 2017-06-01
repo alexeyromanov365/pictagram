@@ -5,14 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'pry-rails'
-gem 'slim'
-gem 'devise'
-gem 'bootstrap-sass'
-gem 'cancancan'
-gem 'jquery'
-gem 'simple_form'
-gem 'carrierwave'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
@@ -38,6 +30,15 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'pry-rails'
+gem 'slim'
+gem 'devise'
+gem 'bootstrap-sass'
+gem 'cancancan'
+gem 'jquery-rails'
+gem 'simple_form'
+gem 'carrierwave'
+gem "mini_magick"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
