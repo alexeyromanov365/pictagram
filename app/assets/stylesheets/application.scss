@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
 .container4 {
     position: relative
 }
@@ -50,4 +51,9 @@
   height: auto;
   margin-bottom: 15px;
   padding: 7px 9px;
+}
+
+.user-avatar {
+  width: 25px;
+  height: 25px;
 }

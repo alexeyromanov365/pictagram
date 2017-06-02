@@ -4,15 +4,15 @@ table
   thead
     tr
       th Title
-      th Tags
       th colspan="3"
-  tbody
-    - @albums.each do |album|
-      tr
-        td= album.title
-        td= album.tags
-        td= link_to 'Show', album
-        td= link_to 'Edit', edit_album_path(album)
-        td= link_to 'Destroy', album, method: :delete, data: { confirm: "Are you sure?" }
+  .container-fluid
+    .row
+      - @albums.each do |album|
+        .col-md-4
+          = album.title
+          br
+          = link_to 'Show', album
+          = link_to 'Edit', edit_album_path(album)
+          = link_to 'Destroy', album, method: :delete, data: { confirm: "Are you sure?" }
 br/
 = link_to 'New Album', new_album_path
