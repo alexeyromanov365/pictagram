@@ -1,9 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+@import "albums";
 
 .container4 {
-    position: relative
+    position: relative;
 }
 
 .container4 p {
@@ -12,7 +12,7 @@
     top: 50%;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
 }
 
 .navbar-brand {

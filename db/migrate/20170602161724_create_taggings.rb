@@ -1,9 +1,9 @@
 class CreateTaggings < ActiveRecord::Migration[5.1]
   def change
-    create_table :taggings, {:primary_key => :tagging_id} do |t|
-      t.index :tagging_id, unique: true
+    create_table :taggings do |t|
 
       t.timestamps
+
     end
   end
 end

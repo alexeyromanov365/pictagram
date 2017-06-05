@@ -1,3 +1,9 @@
 class Photo < ApplicationRecord
-  self.primary_key = :photo_id
+
+  has_many :taggings
+  has_many :tags, through: :taggings
+
+  belongs_to :album
+
+
 end

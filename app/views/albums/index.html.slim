@@ -3,16 +3,27 @@ h1 Albums
 table
   thead
     tr
-      th Title
-      th colspan="3"
+      th colspan="4"
   .container-fluid
     .row
       - @albums.each do |album|
-        .col-md-4
-          = album.title
+        .col-md-3
           br
-          = link_to 'Show', album
+          = album.title
+          = link_to album
+            = image_tag("/assets/empty_album.png", class: 'img-responsive')
           = link_to 'Edit', edit_album_path(album)
+          | |
           = link_to 'Destroy', album, method: :delete, data: { confirm: "Are you sure?" }
-br/
-= link_to 'New Album', new_album_path
+      .col-md-3
+        .album-photo
+          = link_to new_album_path
+            = image_tag("/assets/photo_album.png", class: 'img-responsive')
+            p New album
+br
+
+/ = link_to 'New Album', new_album_path
+/img alt="Pictagram logo" src="/assets/logo.png" /
+
+
+

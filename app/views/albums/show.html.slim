@@ -2,9 +2,9 @@ p#notice= notice
 p
   strong Title:
   = @album.title
+
+= link_to "New photo", new_photo_path
 p
-  strong Tags:
-  = @album.tags
 = link_to 'Edit', edit_album_path(@album)
-| \
+| |
 = link_to 'Back', albums_path

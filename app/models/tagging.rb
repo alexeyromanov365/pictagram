@@ -1,3 +1,7 @@
 class Tagging < ApplicationRecord
-  self.primary_key = :tagging_id
+
+  belongs_to :album
+  belongs_to :photo
+  belongs_to :tag
+
 end

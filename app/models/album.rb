@@ -1,3 +1,11 @@
 class Album < ApplicationRecord
-  self.primary_key = :album_id
+
+  has_many :taggings
+  has_many :tags, through: :taggings
+
+  belongs_to :user
+  has_many :photos
+
+  validates :title, uniqueness: true
+
 end
