@@ -3,8 +3,8 @@ p
   strong Title:
   = @photo.title
 p
-  strong Tags:
-  = @photo.tags
-= link_to 'Edit', edit_photo_path(@photo)
-|
-= link_to 'Back', photos_path
+  strong Description:
+  = @photo.description
+= link_to 'Edit', edit_album_photo_path(@album, @photo)
+| |
+= link_to 'Back', albums_path

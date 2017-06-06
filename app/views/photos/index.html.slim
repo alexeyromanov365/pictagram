@@ -3,16 +3,47 @@ h1 Photos
 table
   thead
     tr
-      th Title
-      th Tags
-      th colspan="3"
-  tbody
-    - @photos.each do |photo|
-      tr
-        td= photo.title
-        td= photo.tags
-        td= link_to 'Show', photo
-        td= link_to 'Edit', edit_photo_path(photo)
-        td= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }
-br/
-= link_to 'New Photo', new_photo_path
+      th colspan="4"
+  .container-fluid
+    .row
+      - @photos.each do |photo|
+        .col-md-3
+          br
+          = photo.title
+          = link_to album_photo
+            - binding.pry
+            = image_tag(, class: 'img-responsive')
+
+          = link_to 'Edit', edit_album_photo_path(@photos)
+          = link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }
+
+        .col_md-3
+          = link_to new_photo_path
+
+
+
+
+p#notice= notice
+h1 Albums
+table
+  thead
+    tr
+      th colspan="4"
+  .container-fluid
+    .row
+      - @albums.each do |album|
+        .col-md-3
+          br
+          = album.title
+          = link_to album
+            = image_tag("/assets/empty_album.png", class: 'img-responsive')
+          = link_to 'Edit', edit_album_path(album)
+          | |
+          = link_to 'Destroy', album, method: :delete, data: { confirm: "Are you sure?" }
+      .col-md-3
+        .album-photo
+          = link_to new_album_path
+            = image_tag("/assets/photo_album.png", class: 'img-responsive')
+            p New album
+br
+

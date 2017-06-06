@@ -10,8 +10,13 @@ table
         .col-md-3
           br
           = album.title
-          = link_to album
-            = image_tag("/assets/empty_album.png", class: 'img-responsive')
+          - if @photo.present?
+
+          - else
+            = link_to new_album_photo_path(album)
+              = image_tag("/assets/empty_album.png", class: 'img-responsive')
+          = album.description
+          br
           = link_to 'Edit', edit_album_path(album)
           | |
           = link_to 'Destroy', album, method: :delete, data: { confirm: "Are you sure?" }

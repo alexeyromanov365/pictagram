@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605072221) do
+ActiveRecord::Schema.define(version: 20170606104542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "albums", force: :cascade do |t|
     t.string "title"
+    t.string "description"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -25,8 +26,12 @@ ActiveRecord::Schema.define(version: 20170605072221) do
 
   create_table "photos", force: :cascade do |t|
     t.string "title"
+    t.string "description"
+    t.string "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "album_id"
+    t.index ["album_id"], name: "index_photos_on_album_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -63,4 +68,5 @@ ActiveRecord::Schema.define(version: 20170605072221) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "photos", "albums"
 end

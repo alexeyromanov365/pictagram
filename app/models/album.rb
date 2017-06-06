@@ -7,5 +7,5 @@ class Album < ApplicationRecord
   has_many :photos
 
   validates :title, uniqueness: true
-
+  validates_length_of :description, :minimum => 5, :maximum => 25, :allow_blank => true
 end

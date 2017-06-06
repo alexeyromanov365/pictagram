@@ -1,7 +1,9 @@
-= simple_form_for(@photo) do |f|
+/ - binding.pry
+= simple_form_for(@photo, url: path) do |f|
   = f.error_notification
   .form-inputs
     = f.input :title
-    = f.input :tags
+    = f.input :description, as: :text
+    = f.input :picture, as: :file
   .form-actions
     = f.button :submit
