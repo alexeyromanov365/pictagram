@@ -10,8 +10,9 @@ table
         .col-md-3
           br
           = album.title
-          - if @photo.present?
-
+          - if album.photos.any?
+            = link_to album_photos_path(album)
+              = image_tag("/assets/empty_album.png", class: 'img-responsive')
           - else
             = link_to new_album_photo_path(album)
               = image_tag("/assets/empty_album.png", class: 'img-responsive')
