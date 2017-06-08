@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20170606104542) do
   create_table "photos", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.string "picture"
+    t.string "picture", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "album_id"
@@ -35,8 +35,14 @@ ActiveRecord::Schema.define(version: 20170606104542) do
   end
 
   create_table "taggings", force: :cascade do |t|
+    t.bigint "album_id"
+    t.bigint "photo_id"
+    t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_taggings_on_album_id"
+    t.index ["photo_id"], name: "index_taggings_on_photo_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|

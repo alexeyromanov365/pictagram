@@ -6,7 +6,6 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  has_many :albums
-
+  has_many :albums, dependent: :destroy
 
 end

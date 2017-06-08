@@ -1,63 +1,30 @@
 p#notice= notice
 h1 Photos
-table
-  thead
-    tr
-      th colspan="4"
-  .container-fluid
-    .row
-      - @photos.each do |photo|
-        .col-md-3
-          br
-          = photo.title
-          = link_to album_photo_path(@album, photo)
-            #enlargeImageModal.modal.fade aria-hidden="true" aria-labelledby="enlargeImageModal" role="dialog" tabindex="-1"
-              .modal-dialog.modal-lg role="document"
-                .modal-content
-                  .modal-header
-                    button.close aria-label="Close" data-dismiss="modal" type="button"
-                      span aria-hidden="true"  ×
-                  .modal-body
-                    img.enlargeImageModalSource src="" style=("width: 100%;") /
-            .container
-              .row
-                .col-md-4
-                  = image_tag(photo.picture.url(:small))
-          = photo.description
-          br
-          = link_to 'Edit', edit_album_photo_path(@album, photo)
-          | |
-          = link_to 'Destroy', [@album, photo], method: :delete, data: { confirm: 'Are you sure?' }
+.container-fluid
+  .row
+    - @photos.each do |photo|
       .col-md-3
-        .photo-style
-          = link_to new_album_photo_path(@album)
-            = image_tag("/assets/add_picture.jpg", class: 'img-responsive')
-            p New photo
+        br
+        = photo.title
+        #enlargeImageModal.modal.fade aria-hidden="true" aria-labelledby="enlargeImageModal" role="dialog" tabindex="-1"
+          .modal-dialog.modal-lg role="document"
+            .modal-content
+              .modal-header
+                button.close aria-label="Close" data-dismiss="modal" type="button"
+                  span aria-hidden="true"  ×
+              .modal-body
+                img.enlargeImageModalSource src="" style=("width: 100%;") /
+        .row
+          .col-md-3
+            = image_tag(photo.picture.url(:small), class: 'photo-img')
+        = photo.description
+        br
+        = link_to 'Edit', edit_album_photo_path(@album, photo)
+        | |
+        = link_to 'Destroy', [@album, photo], method: :delete, data: { confirm: 'Are you sure?' }
+    .col-md-3
+      .photo-style
+        = link_to new_album_photo_path(@album)
+          = image_tag("/assets/add_picture.jpg", class: 'img-responsive')
+          p New photo
 br
-
-.my-photos
-  - @photos.each do |photo|
-    = image_tag(photo.picture.url(:small) , class: 'my-img')
-    #myModal.modal
-      span.close onclick="document.getElementById('myModal').style.display='none'"  ×
-      img#img01.modal-content/
-      #caption
-
-br
-br
-br
-br
-br
-br
-br
-
-
-
-
-
-
-
-
-
-
-
