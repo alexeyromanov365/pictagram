@@ -1,13 +1,17 @@
 p#notice= notice
+= link_to :back
+  = image_tag("/assets/return.png", size: "30x30" , class: 'back-icon')
 p
   strong Title:
   = @album.title
 p
   strong Description:
   = @album.description
-
+p
+  strong Tags:
+  - @album.tags.each do |tag|
+    span.tag
+      = link_to (tag.name)
 = link_to "New photo", new_album_photo_path(@album.id)
 p
 = link_to 'Edit', edit_album_path(@album)
-| |
-= link_to 'Back', albums_path

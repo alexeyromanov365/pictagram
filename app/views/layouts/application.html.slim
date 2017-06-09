@@ -17,10 +17,11 @@ html
               span.sr-only Toggle navigation
             a.navbar-brand href="/"
               img alt="Pictagram logo" src="/assets/logo.png" /
-          form.navbar-form.navbar-left style=("margin-left: 250px;")
-            .form-group
-              input.form-control placeholder="Search" type="text" /
-            button.btn.btn-default type="submit"  Submit
+          - if user_signed_in?
+            form.navbar-form.navbar-left style=("margin-left: 250px;")
+              .form-group
+                input.form-control placeholder="Search" type="text" /
+              button.btn.btn-default type="submit"  Submit
           #navbar2.navbar-collapse.collapse
             ul.nav.navbar-nav.navbar-right
               li

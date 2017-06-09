@@ -2,7 +2,8 @@
   = f.error_notification
   .form-inputs
     = f.input :title
-    = f.input :description
+    = f.input :description, as: :text
     = f.input :all_tags, as: :text
+    = f.error "tags.name"
   .form-actions
     = f.button :submit

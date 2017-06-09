@@ -1,5 +1,4 @@
-.row
-  .col-sm-6.col-sm-offset-3
-    h1 New Album
-    = render 'form', album: @album
-    = link_to 'Back', albums_path
+= link_to :back
+  = image_tag("/assets/return.png", size: "30x30" , class: 'img-responsive')
+h1 New Album
+= render 'form', album: @album

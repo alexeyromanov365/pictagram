@@ -1,7 +1,7 @@
 class Tagging < ApplicationRecord
 
-  belongs_to :album
-  belongs_to :photo
-  belongs_to :tag
+  belongs_to :album, optional: true
+  belongs_to :photo, optional: true
+  belongs_to :tag, optional: true
 
 end

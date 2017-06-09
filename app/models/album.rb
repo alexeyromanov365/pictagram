@@ -2,8 +2,9 @@ class Album < ApplicationRecord
 
   has_many :taggings
   has_many :tags, through: :taggings
+  accepts_nested_attributes_for :tags, :allow_destroy => true
 
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :photos, dependent: :destroy
 
   validates :title, uniqueness: true, presence: true
@@ -11,13 +12,13 @@ class Album < ApplicationRecord
 
 
   def all_tags=(names)
-    self.tags = names.split(",").map do |name|
-        Tag.where(name: name.strip).first_or_create!
+    self.tags_attributes = names.split(",").map do |name|
+        #Tag.where(name: name.strip).first_or_create
+        { name: name }
     end
   end
 
   def all_tags
-    binding.pry
     self.tags.map(&:name).join(", ")
   end
 

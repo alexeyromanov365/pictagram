@@ -1,5 +1,5 @@
+= link_to :back
+  = image_tag("/assets/return.png", size: "30x30" , class: 'img-responsive')
 h1 Editing Photo
 = render 'form', photo: @photo, path: [@album, @photo]
 = link_to 'Show', [@album, @photo]
-| \
-= link_to 'Back', :back
