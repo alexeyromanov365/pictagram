@@ -5,8 +5,11 @@ class Photo < ApplicationRecord
 
   mount_uploader :picture, PhotoUploader
   validates :picture, presence: true
+  validates :title, presence: true
 
   belongs_to :album, optional: true
+
+  has_many :comments
 
   def all_tags=(names)
     self.tags = names.split(",").map do |name|

@@ -1,6 +1,7 @@
 $(document).on("turbolinks:load", function() {
-    $('.photo-img').on('click', function() {
+  $('.photo-img').on('click', function() {
+    var photoId = $(this).attr('id');
     $('.enlargeImageModalSource').attr('src', $(this).attr('src'));
-    $('#enlargeImageModal').modal('show');
+    $('#enlargeImageModal' + photoId).modal('show');
   });
 });

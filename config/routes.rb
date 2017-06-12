@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :comments
   resources :albums do
     resources :photos
   end
