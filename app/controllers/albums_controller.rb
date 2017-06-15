@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  before_action :set_user
   before_action :set_album, only: [:show, :edit, :update, :destroy]
   #load_and_authorize_resource
 
@@ -11,6 +12,7 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
+
   end
 
   # GET /albums/new
@@ -30,7 +32,7 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.save
-        format.html { redirect_to @album, notice: 'Album was successfully created.' }
+        format.html { redirect_to [@user, @album], notice: 'Album was successfully created.' }
         format.json { render :show, status: :created, location: @album }
       else
         format.html { render :new }
@@ -44,7 +46,7 @@ class AlbumsController < ApplicationController
   def update
     respond_to do |format|
       if @album.update(album_params)
-        format.html { redirect_to @album, notice: 'Album was successfully updated.' }
+        format.html { redirect_to [@user, @album], notice: 'Album was successfully updated.' }
         format.json { render :show, status: :ok, location: @album }
       else
         format.html { render :edit }
@@ -58,13 +60,18 @@ class AlbumsController < ApplicationController
   def destroy
     @album.destroy
     respond_to do |format|
-      format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
+      format.html { redirect_to [@user, @album], notice: 'Album was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def set_user
+      @user = User.find(params[:user_id])
+    end
+
     def set_album
       @album = Album.find(params[:id])
     end

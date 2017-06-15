@@ -1,4 +1,4 @@
-= link_to album_photos_path
+= link_to user_album_photos_path
   = image_tag("/assets/return.png", size: "30x30" , class: 'img-responsive')
 h1 Editing Photo
-= render 'form', photo: @photo, path: [@album, @photo]
+= render 'form', photo: @photo, path: [@user, @album, @photo]

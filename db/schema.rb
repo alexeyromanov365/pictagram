@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170606104542) do
+ActiveRecord::Schema.define(version: 20170615091855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,14 +24,34 @@ ActiveRecord::Schema.define(version: 20170606104542) do
     t.index ["user_id"], name: "index_albums_on_user_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.bigint "photo_id"
+    t.bigint "user_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_comments_on_photo_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "photos", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.string "picture", null: false
+    t.bigint "album_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "album_id"
     t.index ["album_id"], name: "index_photos_on_album_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -74,5 +94,7 @@ ActiveRecord::Schema.define(version: 20170606104542) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "photos"
+  add_foreign_key "comments", "users"
   add_foreign_key "photos", "albums"
 end

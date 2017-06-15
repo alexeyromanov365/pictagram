@@ -2,14 +2,13 @@ class Photo < ApplicationRecord
 
   has_many :taggings
   has_many :tags, through: :taggings
+  has_many :comments, dependent: :destroy
+  belongs_to :album
 
-  mount_uploader :picture, PhotoUploader
   validates :picture, presence: true
   validates :title, presence: true
 
-  belongs_to :album, optional: true
-
-  has_many :comments
+  mount_uploader :picture, PhotoUploader
 
   def all_tags=(names)
     self.tags = names.split(",").map do |name|

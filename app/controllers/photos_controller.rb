@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  before_action :set_user
   before_action :set_album
   before_action :set_photo, only: [:show, :edit, :destroy, :update]
   #load_and_authorize_resource
@@ -12,7 +13,8 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.json
   def show
-    @photo
+    @comment = Comment.new
+    render action: 'modal', layout: false if request.xhr?
   end
 
   # GET /photos/new
@@ -33,7 +35,7 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       if @photo.save
-        format.html { redirect_to [@album, @photo], notice: 'Photo was successfully created.' }
+        format.html { redirect_to [@user, @album, @photo], notice: 'Photo was successfully created.' }
         format.json { render :show, status: :created, location: @photo }
       else
         format.html { render :new }
@@ -47,7 +49,7 @@ class PhotosController < ApplicationController
   def update
     respond_to do |format|
       if @photo.update(photo_params)
-        format.html { redirect_to [@album, @photo], notice: 'Photo was successfully updated.' }
+        format.html { redirect_to [@user, @album, @photo], notice: 'Photo was successfully updated.' }
         format.json { render :show, status: :ok, location: @photo }
       else
         format.html { render :edit }
@@ -61,19 +63,24 @@ class PhotosController < ApplicationController
   def destroy
     @photo.destroy
     respond_to do |format|
-      format.html { redirect_to [@album, @photo], notice: 'Photo was successfully destroyed.' }
+      format.html { redirect_to [@user, @album, @photo], notice: 'Photo was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def set_user
+      @user = current_user
+    end
+
     def set_album
       @album = Album.find(params[:album_id])
     end
 
     def set_photo
-      @photo = @album.photos.find(params[:id])
+      @photo = Photo.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

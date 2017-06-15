@@ -1,9 +1,8 @@
-= simple_form_for(@album) do |f|
+= simple_form_for(@album, url: [@user, @album]) do |f|
   = f.error_notification
   .form-inputs
     = f.input :title
     = f.input :description, as: :text
     = f.input :all_tags, as: :text
-    = f.error "tags.name"
   .form-actions
     = f.button :submit

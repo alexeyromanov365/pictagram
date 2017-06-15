@@ -1,0 +1,8 @@
+- comment ||= @comment
+.comment
+  div
+    = image_tag(comment.user.avatar.url(:small))
+    b = comment.user.email
+    = comment.created_at
+  div
+    = comment.content
