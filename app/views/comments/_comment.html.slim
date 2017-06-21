@@ -1,7 +1,7 @@
 - comment ||= @comment
 .comment
   div
-    = image_tag(comment.user.avatar.url(:small))
+    = image_tag(comment.user.avatar.url(:small)) if comment.user.avatar?
     b = comment.user.email
     = comment.created_at
   div

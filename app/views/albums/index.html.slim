@@ -1,7 +1,7 @@
 p#notice= notice
 h1
   = image_tag(current_user.avatar.url(:small), class: 'user-avatar') if current_user.avatar?
-  = current_user.email
+  = @user.email
 table
   thead
     tr
@@ -12,28 +12,14 @@ table
         .col-md-3
           br
           = album.title
-          - if album.photos.any?
-            = link_to user_album_photos_path(@user, album)
-              div
-                - album.photos.sample(4).each do |photo|
-                  div style="display:inline-block"
-                    = image_tag(photo.picture.small.url, class: 'img-responsive', width: '103')
-          - else
-            = link_to new_user_album_photo_path(@user, album)
-              = image_tag("/assets/empty_album.png", class: 'img-responsive')
-          - if album.description.length > 27
-            = album.description[0,  31] + "..."
-          - else
-            = album.description[0, 27]
+          = render partial: 'preview', locals: { album: album }
           br
           = link_to 'Edit', edit_user_album_path(@user, album)
           | |
           = link_to 'Destroy', user_album_path(@user, album), method: :delete, data: { confirm: "Are you sure?" }
       .col-md-3
         .album-photo
-          = link_to new_user_album_path
+          = link_to new_user_album_path(@user)
             = image_tag("/assets/photo_album.png", class: 'img-responsive')
             p New album
 br
-
-

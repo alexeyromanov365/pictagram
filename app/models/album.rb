@@ -19,4 +19,7 @@ class Album < ApplicationRecord
     self.tags.map(&:name).join(", ")
   end
 
+  def to_partial_path
+    'albums/_preview'
+  end
 end

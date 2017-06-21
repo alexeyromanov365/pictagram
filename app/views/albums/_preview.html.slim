@@ -1,0 +1,16 @@
+- binding.pry
+- if album.photos.any? && album.photos.count > 3
+  = link_to user_album_photos_path(@user, album)
+    div
+      - album.photos.sample(4).each do |photo|
+        div style="display:inline-block"
+          = image_tag(photo.picture.small.url, class: 'img-responsive', width: '103')
+- if album.photos.count < 4
+  = image_tag(album.photos.last.url, class 'img-responsive')
+- else
+  = link_to new_user_album_photo_path(@user, album)
+    = image_tag("/assets/empty_album.png", class: 'img-responsive')
+- if album.description.length > 27
+  = album.description[0,  31] + "..."
+- else
+  = album.description[0, 27]
