@@ -1,7 +1,6 @@
-p#notice= notice
 = link_to user_album_photos_path
   = image_tag("/assets/return.png", size: "30x30" , class: 'img-responsive')
-= image_tag(@photo.picture.url)
+= image_tag(@photo.picture.url, class: "image-save-show")
 p
   strong Title:
   = @photo.title
