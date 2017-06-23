@@ -1,6 +1,5 @@
 class Album < ApplicationRecord
-
-  has_many :taggings
+  has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
   has_many :photos, dependent: :destroy
   belongs_to :user
@@ -10,17 +9,12 @@ class Album < ApplicationRecord
   validates :title, uniqueness: true, presence: true
 
   def all_tags=(names)
-    self.tags_attributes = names.split(",").map do |name|
-      { name: name }
+    self.tags = names.split(",").map do |name|
+      Tag.where(name: name.strip).first_or_create!
     end
   end
 
   def all_tags
     self.tags.map(&:name).join(", ")
   end
-
 end
-
-  #def to_partial_path
-  #  'albums/_preview'
-  #end

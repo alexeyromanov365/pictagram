@@ -21,7 +21,7 @@ h1 Photos
         = link_to 'Destroy', user_album_photo_path(@user, @album, photo), method: :delete, data: { confirm: 'Are you sure?' }
     .col-md-3
       .photo-style
-        = link_to new_user_album_photo_path(@album)
+        = link_to new_user_album_photo_path(@user, @album)
           = image_tag("/assets/add_picture.jpg", class: 'img-responsive')
           p New photo
 br

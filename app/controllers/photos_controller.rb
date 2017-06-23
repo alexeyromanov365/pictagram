@@ -24,15 +24,17 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.create(photo_params)
     @album.photos << @photo
-    respond_with @photo, location: -> { @user }
+    respond_with @photo, location: [@user, @album, @photo]
   end
 
   def update
-    respond_with @photo.update(photo_params)
+    @photo.update(photo_params)
+    respond_with @photo, location: [@user, @album, @photo]
   end
 
   def destroy
-    respond_with @photo.destroy
+    @photo.destroy
+    respond_with @photo, location: [@user, @album, @photo]
   end
 
   private

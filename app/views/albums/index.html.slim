@@ -12,6 +12,7 @@ table
           br
           = album.title
           = render partial: 'preview', locals: { album: album }
+          = album.all_tags
           br
           = link_to 'Edit', edit_user_album_path(@user, album)
           | |

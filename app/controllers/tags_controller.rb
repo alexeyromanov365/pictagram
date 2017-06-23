@@ -1,5 +1,7 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
+  before_action :set_album
+  before_action :set_photo
 
   def index
     @tags = Tag.all
@@ -53,7 +55,10 @@ class TagsController < ApplicationController
       @tag = Tag.find(params[:id])
     end
 
+    def set_album
+      @album = Album.find
+
     def tag_params
-      params.fetch(:tag, {})
+      params.fetch(:tag, {}).permit(:album_id, :photo_id)
     end
 end

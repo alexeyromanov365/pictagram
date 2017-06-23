@@ -19,16 +19,18 @@ class AlbumsController < ApplicationController
 
   def create
     @album = Album.create(album_params)
-    current_user.albums << @album
-    respond_with @album, location: -> { @user }
+    @user.albums << @album
+    respond_with @album, location: [@user, @album]
   end
 
   def update
-    respond_with @album.update(album_params)
+    @album.update(album_params)
+    respond_with @album, location: [@user, @album]
   end
 
   def destroy
-    respond_with @album.destroy, location: -> { @user }
+    @album.destroy
+    respond_with @album, location: [@user, @album]
   end
 
   private
