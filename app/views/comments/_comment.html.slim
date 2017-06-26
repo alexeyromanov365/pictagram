@@ -1,8 +1,9 @@
 - comment ||= @comment
 .comment
-  div
-    = image_tag(comment.user.avatar.url(:small)) if comment.user.avatar?
-    b = comment.user.email
-    = comment.created_at
-  div
+  .commenter-info
+    .leftcol
+      b = comment.user.email
+    .rightcol
+      = time_ago_in_words(comment.created_at) + " ago"
+  .commenter-info2
     = comment.content

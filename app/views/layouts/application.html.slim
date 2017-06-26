@@ -27,9 +27,7 @@ html
               li
                 = link_to("Home", root_path)
               li
-                a href="#"  About
-              li
-                a href="#"  Contact
+                = link_to("My Profile", user_albums_path(current_user)) if current_user.present?
               - if user_signed_in?
                 li.dropdown
                   a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" role="button"

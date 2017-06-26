@@ -24,8 +24,11 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    @album.update(album_params)
-    respond_with @album, location: [@user, @album]
+    begin
+      respond_with @album.update(album_params), location: [@user, @album]
+    rescue Exception
+      @album.errors.messages
+    end
   end
 
   def destroy

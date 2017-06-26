@@ -59,6 +59,6 @@ class TagsController < ApplicationController
       @album = Album.find
 
     def tag_params
-      params.fetch(:tag, {}).permit(:album_id, :photo_id)
+      params.fetch(:tag, {})
     end
 end

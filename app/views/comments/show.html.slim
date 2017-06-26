@@ -1,0 +1,10 @@
+p#notice= notice
+p
+  strong Photo:
+  = @comment.photo
+p
+  strong Content:
+  = @comment.content
+= link_to 'Edit', edit_album_photo_comment_path(@comment)
+| \
+= link_to 'Back', albums_path

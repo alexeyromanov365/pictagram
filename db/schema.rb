@@ -38,10 +38,12 @@ ActiveRecord::Schema.define(version: 20170615091855) do
     t.string "title"
     t.string "description"
     t.string "picture", null: false
+    t.bigint "user_id"
     t.bigint "album_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["album_id"], name: "index_photos_on_album_id"
+    t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|

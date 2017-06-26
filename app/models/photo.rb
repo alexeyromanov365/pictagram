@@ -11,8 +11,8 @@ class Photo < ApplicationRecord
   mount_uploader :picture, PhotoUploader
 
   def all_tags=(names)
-    self.tags_attributes = names.split(",").map do |name|
-      { name: name }.first_or_create
+    self.tags = names.split(",").map do |name|
+      Tag.where(name: name.strip).first_or_create!
     end
   end
 
