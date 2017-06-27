@@ -1,7 +1,6 @@
 class AlbumsController < ApplicationController
   before_action :set_user
   before_action :set_album, only: [:show, :edit, :update, :destroy]
-  respond_to :html, :json
 
   def index
     @albums = @user.albums
@@ -24,11 +23,7 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    begin
-      respond_with @album.update(album_params), location: [@user, @album]
-    rescue Exception
-      @album.errors.messages
-    end
+    respond_with @album.update(album_params), location: [@user, @album]
   end
 
   def destroy
@@ -49,4 +44,5 @@ class AlbumsController < ApplicationController
   def album_params
     params.require(:album).permit(:title, :description, :all_tags)
   end
+
 end

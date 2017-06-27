@@ -12,7 +12,8 @@ Rails.application.routes.draw do
 
   root to: "person#profile"
 
-  resources :tags
+  resources :tags, only: [:show]
+
   resources :users do
     resources :albums do
       resources :photos do
@@ -28,4 +29,5 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
+
 end

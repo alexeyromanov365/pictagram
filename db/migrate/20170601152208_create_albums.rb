@@ -3,7 +3,7 @@ class CreateAlbums < ActiveRecord::Migration[5.1]
     create_table :albums do |t|
       t.string :title, unique: true
       t.string :description
-      t.references :user
+      t.references :user, foreign_key: true
       t.timestamps
     end
   end

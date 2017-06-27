@@ -2,7 +2,6 @@ class PhotosController < ApplicationController
   before_action :set_user
   before_action :set_album
   before_action :set_photo, only: [:show, :edit, :destroy, :update]
-  respond_to :html, :json
 
   def index
     @photos = @album.photos
@@ -52,6 +51,6 @@ class PhotosController < ApplicationController
   end
 
   def photo_params
-    params.require(:photo).permit(:title, :description, :picture, :user_id, :album_id, :all_tags)
+    params.require(:photo).permit(:title, :description, :picture, :album_id, :all_tags)
   end
 end

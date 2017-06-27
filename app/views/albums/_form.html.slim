@@ -1,8 +1,8 @@
-= simple_form_for(@album, url: [@user, @album]) do |f|
+= simple_form_for(@album, url: [@user, @album], remote: true) do |f|
   = f.error_notification
   .form-inputs
     = f.input :title
     = f.input :description, as: :text
-    = f.input :all_tags, as: :text
+    = f.input :all_tags, as: :text, placeholder: "Tags separated with comma"
   .form-actions
     = f.button :submit
