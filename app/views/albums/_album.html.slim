@@ -1,0 +1,9 @@
+= link_to user_album_photos_path(album.user, album)
+  = album.title
+| |
+= album.description
+| |
+= album.created_at
+p
+  strong Tags:
+  = raw album.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'tag tag-primary' }.join(' ')

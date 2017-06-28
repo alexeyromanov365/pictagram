@@ -21,8 +21,17 @@ class CommentsController < ApplicationController
   def create
     @comment = @photo.comments.build(comment_params)
     @comment.user = current_user
-    respond_with @comment, location: [@album, @photo]
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to [@album, @photo], notice: 'Comment was successfully created.' }
+        format.js
+      else
+        format.html { render :new }
+        format.js
+      end
+    end
   end
+
 
   def update
     respond_with @comment.update(comment_params), location: [@album, @photo, @comment]

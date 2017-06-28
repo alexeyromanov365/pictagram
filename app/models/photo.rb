@@ -7,7 +7,6 @@ class Photo < ApplicationRecord
   validates :picture, presence: true
   validates :title, presence: true
 
-  accepts_nested_attributes_for :tags, :allow_destroy => true
   mount_uploader :picture, PhotoUploader
 
   def all_tags=(names)

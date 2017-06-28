@@ -7,8 +7,10 @@ h2 Feed
           .card-content
             / = image_tag(photo.user.avatar.url(:small)) if photo.user.avatar?
             .card-left
-              = image_tag(photo.album.user.avatar.url(:small))
-              = photo.album.user.email
+              = image_tag(photo.album.user.avatar.url(:small)) if photo.album.user.avatar?
+              = link_to user_albums_path(photo.album.user)
+                b = photo.album.user.email
+              = " "
               = photo.title
             .card-right
               small = time_ago_in_words(photo.created_at) + " ago"

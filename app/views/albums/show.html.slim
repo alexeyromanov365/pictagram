@@ -8,7 +8,7 @@ p
   = @album.description
 p
   strong Tags:
-  = raw @album.tags.map(&:name).map{|t| link_to t, tag_path(t), class: 'tag tag-primary'}.join(' ')
+  = raw @album.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'tag tag-primary' }.join(' ')
 = link_to "New photo", new_user_album_photo_path(@user, @album)
 p
 = link_to 'Edit', edit_user_album_path(@user, @album)

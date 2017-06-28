@@ -1,0 +1,5 @@
+h1 = @tag.name
+- if @tag.albums.empty?
+  h2 No albums
+- else
+  = render @tag.albums

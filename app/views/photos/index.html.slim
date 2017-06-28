@@ -5,9 +5,7 @@ h3
 h4
   = @album.description
 h5
-  - @album.tags.each do |tag|
-    span.tag
-      = link_to (tag.name)
+  = raw @album.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: "btn btn-primary btn-sm" }.join(' ')
 .container-fluid
   .row
     - @photos.each do |photo|

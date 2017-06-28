@@ -7,6 +7,7 @@ class AlbumsController < ApplicationController
   end
 
   def show
+    @album
   end
 
   def new
