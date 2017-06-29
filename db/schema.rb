@@ -53,12 +53,13 @@ ActiveRecord::Schema.define(version: 20170627130522) do
   end
 
   create_table "taggings", force: :cascade do |t|
-    t.bigint "album_id"
+    t.string "taggable_type"
+    t.bigint "taggable_id"
     t.bigint "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["album_id"], name: "index_taggings_on_album_id"
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable_type_and_taggable_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -94,6 +95,4 @@ ActiveRecord::Schema.define(version: 20170627130522) do
   add_foreign_key "comments", "photos"
   add_foreign_key "comments", "users"
   add_foreign_key "photos", "albums"
-  add_foreign_key "taggings", "albums"
-  add_foreign_key "taggings", "tags"
 end

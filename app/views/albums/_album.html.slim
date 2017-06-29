@@ -1,9 +1,13 @@
-= link_to user_album_photos_path(album.user, album)
-  = album.title
-| |
-= album.description
-| |
-= album.created_at
-p
-  strong Tags:
+div
+  = "Album title: "
+  = link_to user_album_photos_path(album.user, album)
+    = album.title
+div
+  = "Album description: "
+  = album.description
+div
+  = "Album created: "
+  = album.created_at
+div
+  = "Album tags: "
   = raw album.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'tag tag-primary' }.join(' ')

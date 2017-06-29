@@ -1,9 +1,9 @@
-= simple_form_for(@photo, url: path) do |f|
+= simple_form_for(@photo, url: [@user, @album, @photo], remote: true) do |f|
   = f.error_notification
   .form-inputs
     = f.input :title
     = f.input :description, as: :text
-    = f.input :all_tags, as: :text
+    = f.input :all_tags, as: :text, placeholder: "Tags separated with comma"
     = f.input :picture, as: :file
   .form-actions
     = f.button :submit

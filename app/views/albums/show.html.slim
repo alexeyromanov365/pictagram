@@ -1,14 +1,17 @@
 = link_to user_albums_path
   = image_tag("/assets/return.png", size: "30x30" , class: 'back-icon')
 p
-  strong Title:
+  strong Album title:
+  = " "
   = @album.title
 p
-  strong Description:
+  strong Album description:
+  = " "
   = @album.description
 p
-  strong Tags:
+  strong Album tags:
+  = " "
   = raw @album.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'tag tag-primary' }.join(' ')
 = link_to "New photo", new_user_album_photo_path(@user, @album)
 p
-= link_to 'Edit', edit_user_album_path(@user, @album)
+= link_to 'Edit album', edit_user_album_path(@user, @album)

@@ -1,0 +1,13 @@
+div
+  = "Photo title: "
+  = link_to user_album_photo_path(photo.user, photo.album, photo)
+    = photo.title
+div
+  = "Photo description: "
+  = photo.description
+div
+  = "Photo created: "
+  = photo.created_at
+div
+  = "Photo tags: "
+  = raw photo.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'tag tag-primary' }.join(' ')

@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
   before_action :set_user
   before_action :set_album, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :json
 
   def index
     @albums = @user.albums
@@ -12,14 +13,16 @@ class AlbumsController < ApplicationController
 
   def new
     @album = Album.new
+
   end
 
   def edit
   end
 
   def create
-    @album = Album.create(album_params)
-    @user.albums << @album
+    @album = @user.albums.create(album_params)
+    @album.tags = TagService.new(params[:album][:all_tags]).tags
+
     respond_with @album, location: [@user, @album]
   end
 
@@ -43,7 +46,7 @@ class AlbumsController < ApplicationController
   end
 
   def album_params
-    params.require(:album).permit(:title, :description, :all_tags)
+    params.require(:album).permit(:title, :description)
   end
 
 end
