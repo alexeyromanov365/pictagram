@@ -1,6 +1,12 @@
 h1
   = image_tag(@user.avatar.url, class: 'img-circle') if @user.avatar?
   = @user.email + " Albums"
+  div
+    small
+      = "Followers: "
+      = @user.followers.count
+      = " Following: "
+      = @user.following.count
 table
   thead
     tr

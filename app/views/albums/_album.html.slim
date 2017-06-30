@@ -11,3 +11,4 @@ div
 div
   = "Album tags: "
   = raw album.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'tag tag-primary' }.join(' ')
+br

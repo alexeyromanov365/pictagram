@@ -3,6 +3,7 @@ class PhotosController < ApplicationController
   before_action :set_album
   before_action :set_photo, only: [:show, :edit, :destroy, :update]
   respond_to :html, :json
+  protect_from_forgery
 
   def index
     @photos = @album.photos
@@ -22,13 +23,13 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = Photo.create(photo_params)
-    @album.photos << @photo
+    @photo = @album.photos.create(photo_params)
+    @photo.tags = TagService.new(params[:photo][:tags]).tags
     respond_with @photo, location: [@user, @album, @photo]
   end
 
   def update
-    @photo.update(photo_params)
+    @photo.tags = TagService.new(params[:photo][:tags]).tags
     respond_with @photo, location: [@user, @album, @photo]
   end
 

@@ -13,7 +13,6 @@ class AlbumsController < ApplicationController
 
   def new
     @album = Album.new
-
   end
 
   def edit
@@ -21,12 +20,12 @@ class AlbumsController < ApplicationController
 
   def create
     @album = @user.albums.create(album_params)
-    @album.tags = TagService.new(params[:album][:all_tags]).tags
-
+    @album.tags = TagService.new(params[:album][:tags]).tags
     respond_with @album, location: [@user, @album]
   end
 
   def update
+    @album.tags = TagService.new(params[:album][:tags]).tags
     respond_with @album.update(album_params), location: [@user, @album]
   end
 
@@ -48,5 +47,4 @@ class AlbumsController < ApplicationController
   def album_params
     params.require(:album).permit(:title, :description)
   end
-
 end
