@@ -4,7 +4,11 @@ class AlbumsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @albums = @user.albums
+    if params[:search]
+      @albums = Album.search(params[:search].order("created_at DESC"))
+    else
+      @albums = @user.albums.order("created_at DESC")
+    end
   end
 
   def show

@@ -5,6 +5,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   has_many :albums, dependent: :destroy
+  has_many :photos, through: :albums
   has_many :comments, dependent: :destroy
 
   has_many :active_relationships,  class_name:  "Relationship",
@@ -15,6 +16,8 @@ class User < ApplicationRecord
                                    dependent:   :destroy
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+
+  has_many :feed_photos, through: :following, source: :photos
 
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)

@@ -1,12 +1,12 @@
 doctype html
 html
   head
-    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
     title Pictagram
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    meta content="width=device-width, initial-scale=1" name="viewport" /
+    meta content="width=device-width, initial-scale=1" name="viewport"
 
   body
     .container
@@ -16,12 +16,8 @@ html
             button.navbar-toggle.collapsed data-target="#navbar2" data-toggle="collapse" type="button"
               span.sr-only Toggle navigation
             a.navbar-brand href="/"
-              img alt="Pictagram logo" src="/assets/logo.png" /
-          - if user_signed_in?
-            form.navbar-form.navbar-left
-              .form-group
-                input.form-control placeholder="Search" type="text" /
-              button.btn.btn-default type="submit"  Submit
+              img alt="Pictagram logo" src="/assets/logo.png"
+          /= render "person/search"
           #navbar2.navbar-collapse.collapse
             ul.nav.navbar-nav.navbar-right
               li

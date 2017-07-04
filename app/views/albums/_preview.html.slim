@@ -3,7 +3,7 @@
     div
       - album.photos.sample(4).each do |photo|
         div style="display:inline-block"
-          = image_tag(photo.picture.small.url, class: 'img-responsive', width: '103')
+          = image_tag(photo.picture.small.url, width: '103')
 - elsif album.photos.count < 4 && album.photos.count > 0
   = link_to user_album_photos_path(@user, album)
     = image_tag(album.photos.sample.picture.small.url, class: 'img-responsive')

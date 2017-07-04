@@ -1,17 +1,16 @@
-h2 Feed
+h2
+  span.pl-05 Feed
 .container
   .row
     .col-md-6.col-md-offset-3
-      - Photo.all.order('created_at DESC').each do |photo|
+      - @feed.each do |photo|
         .card
           .card-content
-            / = image_tag(photo.user.avatar.url(:small)) if photo.user.avatar?
             .card-left
               = image_tag(photo.album.user.avatar.url(:small)) if photo.album.user.avatar?
               = link_to user_albums_path(photo.album.user)
                 b = photo.album.user.email
-              = " "
-              = photo.title
+              span.pl-05 = photo.title
             .card-right
               small = time_ago_in_words(photo.created_at) + " ago"
           .card-image

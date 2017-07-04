@@ -4,4 +4,9 @@ class Album < ApplicationRecord
   has_many :tags, through: :taggings
   has_many :photos, dependent: :destroy
   validates :title, uniqueness: true, presence: true
+
+  def self.search(search)
+    where("name ILIKE ?", "%#{search}%")
+    where("content ILIKE ?", "%#{search}%")
+  end
 end

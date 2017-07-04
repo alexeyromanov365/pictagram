@@ -1,0 +1,9 @@
+/ form.navbar-form.navbar-left
+/   = form_tag(user_albums_path([:user_id]), :method => "get", id: "search-form") do
+/   = text_field_tag :search, params[:search], placeholder: "Search Posts"
+/   = submit_tag "Search"
+/   - if @albums.present?
+/     = render @albums
+/   - else
+/     p
+/     | There are no albums containing the term(s) #{params[:search]}.

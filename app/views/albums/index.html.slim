@@ -1,3 +1,12 @@
+= form_tag(user_albums_path([:user_id]), :method => "get", id: "search-form") do
+= text_field_tag :search, params[:search], placeholder: "Search Posts"
+= submit_tag "Search"
+  - if @albums.present?
+    = render @albums
+  - else
+    p
+    | There are no albums containing the term(s) #{params[:search]}.
+
 h1
   = image_tag(@user.avatar.url, class: 'img-circle') if @user.avatar?
   = @user.email + " Albums"
@@ -7,6 +16,17 @@ h1
       = @user.followers.count
       = " Following: "
       = @user.following.count
+  div
+    - if current_user.id != @user.id
+      - if !current_user.following?(@user)
+        = form_for(current_user.active_relationships.build) do |f|
+          div
+            = hidden_field_tag :followed_id, @user.id
+          = f.submit"Follow", class: "btn btn-primary"
+      - else
+        = form_for(current_user.active_relationships.find_by(followed_id: @user.id), html: { method: :delete }) do |f|
+          = f.submit"Unfollow", class: "btn btn-primary"
+
 table
   thead
     tr
