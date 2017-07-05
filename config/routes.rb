@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   resources :tags, only: [:show]
 
   resources :users do
+    member do
+      get :following, :followers
+    end
     resources :albums do
       resources :photos do
         resources :comments
@@ -22,12 +25,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users do
-    member do
-      get :following, :followers
-    end
-  end
+  get 'search', to: 'searches#search'
 
   resources :relationships, only: [:create, :destroy]
 
+  mount ActionCable.server => '/cable'
 end

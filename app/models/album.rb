@@ -6,7 +6,6 @@ class Album < ApplicationRecord
   validates :title, uniqueness: true, presence: true
 
   def self.search(search)
-    where("name ILIKE ?", "%#{search}%")
-    where("content ILIKE ?", "%#{search}%")
+    where("title iLIKE ?", "%#{search}%")
   end
 end

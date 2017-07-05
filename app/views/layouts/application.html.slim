@@ -17,7 +17,13 @@ html
               span.sr-only Toggle navigation
             a.navbar-brand href="/"
               img alt="Pictagram logo" src="/assets/logo.png"
-          /= render "person/search"
+
+          = form_tag(search_path, :method => "get", id: "search-form", class: "navbar-form navbar-left") do
+            .form-group
+              = text_field_tag :search, params[:search], class: "form-control"
+              button.btn.btn-primary type="submit"
+                span.glyphicon.glyphicon-search aria-hidden="true"
+
           #navbar2.navbar-collapse.collapse
             ul.nav.navbar-nav.navbar-right
               li

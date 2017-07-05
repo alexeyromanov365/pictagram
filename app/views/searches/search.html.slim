@@ -1,0 +1,26 @@
+- if @albums.blank?
+  h4
+    | There are no data containing #{params[:search]}.
+- else
+  table
+    thead
+      tr
+        th colspan="4"
+    .container-fluid
+      .row
+        - @albums.each do |album|
+          .col-md-3
+            div
+              = album.title
+            div
+              - if album.photos.any? && album.photos.count > 3
+                = link_to user_album_photos_path(album.user, album)
+                  div
+                    - album.photos.sample(4).each do |photo|
+                      div style="display:inline-block"
+                        = image_tag(photo.picture.small.url, width: '103')
+              - elsif album.photos.count < 4 && album.photos.count > 0
+                = link_to user_album_photos_path(album.user, album)
+                  = image_tag(album.photos.sample.picture.small.url, class: 'img-responsive')
+              - else
+                = image_tag("/assets/empty_album.png", class: 'img-responsive')
