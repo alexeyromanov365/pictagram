@@ -6,8 +6,8 @@
   .col-md-8.photo-picture
     = image_tag(@photo.picture.url, class: 'photo-img')
   .col-md-4
-    = image_tag(current_user.avatar.url(:small), class: 'user-avatar') if current_user.avatar?
-    b = current_user.email
+    = image_tag(@user.avatar.url(:small), class: 'user-avatar') if @user.avatar?
+    b = @user.email
     br
     b = @photo.description
     br

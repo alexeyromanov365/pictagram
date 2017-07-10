@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :relations
     end
     resources :albums do
       resources :photos do

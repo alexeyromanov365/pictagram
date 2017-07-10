@@ -7,6 +7,7 @@
       tr
         th colspan="4"
     .container-fluid
+      h3 Albums:
       .row
         - @albums.each do |album|
           .col-md-3
@@ -24,3 +25,6 @@
                   = image_tag(album.photos.sample.picture.small.url, class: 'img-responsive')
               - else
                 = image_tag("/assets/empty_album.png", class: 'img-responsive')
+              br
+      h3 Tags:
+      = raw @tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'tag tag-primary' }.join(' ')

@@ -3,9 +3,9 @@ h1
   = @user.email + " Albums"
   div
     small
-      = "Followers: "
+      = link_to "Followers: ", relations_user_path(@user)
       = @user.followers.count
-      = " Following: "
+      = link_to " Following: ", relations_user_path(@user)
       = @user.following.count
   div
     - if current_user.id != @user.id

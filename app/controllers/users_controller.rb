@@ -1,5 +1,4 @@
-class UserController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
+class UsersController < ApplicationController
 
   def following
     @title = "Following"
@@ -14,5 +13,4 @@ class UserController < ApplicationController
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
-
 end

@@ -14,5 +14,8 @@ h2
             .card-right
               small = time_ago_in_words(photo.created_at) + " ago"
           .card-image
-            img.img-responsive
-              = image_tag(photo.picture.url)
+            = link_to('#', id: photo.id, 'data-url': user_album_photo_path(photo.album.user, photo.album, photo), 'data-toggle': 'modal', 'data-target': '#photo-modal')
+              = image_tag(photo.picture.url, class: "img-responsive")
+.modal.fade id=("photo-modal") aria-hidden="true" aria-labelledby="photo" role="dialog" tabindex="-1"
+  .modal-dialog.modal-lg role="document"
+    .modal-content

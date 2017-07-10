@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/DmitryArtyomov/iziToast-rails
+  revision: 87b7146932ce464c9015e07bf77b6a632ec7bd3f
+  specs:
+    izitoast (1.1.2.b)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -222,6 +228,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.2)
   devise
+  izitoast!
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
