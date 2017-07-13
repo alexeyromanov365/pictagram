@@ -1,14 +1,17 @@
-App.notification = App.cable.subscriptions.create "NotificationChannel",
-  connected: ->
+$(document).on 'turbolinks:load', ->
+  return if App.notification
+  App.notification = App.cable.subscriptions.create "NotificationChannel",
+    connected: ->
 
-  disconnected: ->
+    disconnected: ->
 
-  received: (data) ->
-    console.log(data)
-    iziToast.show
-      color: 'dark'
-      icon: 'icon-person'
-      title: 'Hey'
-      message: 'Welcome!'
-      position: 'center'
-      progressBarColor: 'rgb(0, 255, 184)'
+    received: (data) ->
+      console.log(data)
+
+      iziToast.show
+        color: 'white'
+        image: data.icon
+        title: data.name
+        message: data.text
+        position: 'bottomRight'
+        progressBarColor: 'rgb(0, 255, 184)'

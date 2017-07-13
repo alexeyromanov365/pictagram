@@ -19,6 +19,8 @@ class User < ApplicationRecord
 
   has_many :feed_photos, through: :following, source: :photos
 
+  validates :first_name, :last_name, presence: true
+
   def follow(other_user)
     active_relationships.create(followed_id: other_user.id)
   end

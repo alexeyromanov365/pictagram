@@ -1,6 +1,6 @@
 h1
   = image_tag(@user.avatar.url, class: 'img-circle') if @user.avatar?
-  = @user.email + " Albums"
+  = " " + @user.email + " Albums"
   div
     small
       = link_to "Followers: ", relations_user_path(@user)

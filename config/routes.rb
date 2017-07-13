@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  ActiveAdmin.routes(self)
+  resources :search_suggestions
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   devise_scope :user do

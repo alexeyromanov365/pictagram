@@ -21,17 +21,14 @@ class CommentsController < ApplicationController
   def create
     @comment = @photo.comments.build(comment_params)
     @comment.user = current_user
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to [@album, @photo], notice: 'Comment was successfully created.' }
+    if @comment.save
+      Notifications::CommentNotification.new(@comment).notify
+      respond_to do |format|
         format.js
-      else
-        format.html { render :new }
-        format.js
+        format.html { redirect_to [@album, @photo] }
       end
     end
   end
-
 
   def update
     respond_with @comment.update(comment_params), location: [@album, @photo, @comment]
@@ -63,5 +60,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:user_id, :photo_id, :content)
   end
-
 end

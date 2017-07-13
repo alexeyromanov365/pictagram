@@ -56,4 +56,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.assets.unknown_asset_fallback = false
+
+  config.action_cable.allowed_request_origins = ['http://0.0.0.0:3000']
 end

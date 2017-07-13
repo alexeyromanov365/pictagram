@@ -2,5 +2,8 @@
 #= require_self
 #= require_tree ./channels
 
-@App ||= {}
-App.cable = ActionCable.createConsumer()
+(->
+  @App or (@App = {})
+  App.cable = ActionCable.createConsumer()
+  return
+).call this

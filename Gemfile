@@ -24,6 +24,7 @@ gem 'simple_form'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'izitoast', git: 'https://github.com/DmitryArtyomov/iziToast-rails'
+gem 'activeadmin'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
