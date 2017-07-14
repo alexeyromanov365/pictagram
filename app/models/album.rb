@@ -3,9 +3,11 @@ class Album < ApplicationRecord
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
   has_many :photos, dependent: :destroy
-  validates :title, uniqueness: true, presence: true
+  validates :title, uniqueness: { scope: [:user_id] }, presence: true
 
-  def self.search(search)
-    where("title iLIKE ?", "%#{search}%")
+  # attr_accessor :title
+
+  def self.search(term)
+    where("title iLIKE :term", term: "%#{term}%")
   end
 end

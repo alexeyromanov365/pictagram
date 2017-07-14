@@ -8,4 +8,4 @@
 
 jQuery ->
   $('#search').autocomplete
-    source: "search_suggestions"
+    source: "/search_suggestions"

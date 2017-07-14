@@ -1,4 +1,3 @@
-=begin
 User.create!(first_name: "Alexei",
 last_name: "Dmamaaassd",
 email: "al@a.com",
@@ -16,7 +15,6 @@ last_name: "HJDDJADAS",
 email: "a1@a.com",
 password: '123456',
 password_confirmation: "123456")
-=end
 
 Album.create(title:"Title 6",
 description: "Description 4",

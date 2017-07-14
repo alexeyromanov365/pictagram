@@ -4,7 +4,11 @@ class AlbumsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @albums = @user.albums
+    if params[:search].present?
+      @albums = Album.search(params[:search])
+    else
+      @albums = @user.albums
+    end
   end
 
   def show
