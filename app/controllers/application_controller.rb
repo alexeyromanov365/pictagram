@@ -1,4 +1,6 @@
 require "application_responder"
+require 'rake'
+load 'Rakefile'
 
 class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder

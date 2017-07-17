@@ -2,7 +2,6 @@ class Notifications::CommentNotification < Notifications::AbstractNotification
   def initialize(comment)
     @receiver = comment.photo.album.user
     @sender = comment.user
-    @comment = comment
   end
 
   def notify
@@ -13,8 +12,4 @@ class Notifications::CommentNotification < Notifications::AbstractNotification
         text: 'Comment your photo',
     })
   end
-
-  private
-
-  attr_reader :comment
 end

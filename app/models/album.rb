@@ -5,8 +5,6 @@ class Album < ApplicationRecord
   has_many :photos, dependent: :destroy
   validates :title, uniqueness: { scope: [:user_id] }, presence: true
 
-  # attr_accessor :title
-
   def self.search(term)
     where("title iLIKE :term", term: "%#{term}%")
   end

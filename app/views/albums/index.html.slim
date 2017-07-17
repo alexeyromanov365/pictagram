@@ -32,10 +32,12 @@ table
           div
             = render partial: 'preview', locals: { album: album }
           = link_to 'Show', user_album_path(@user, album)
-          | |
-          = link_to 'Edit', edit_user_album_path(@user, album)
-          | |
-          = link_to 'Destroy', user_album_path(@user, album), method: :delete, data: { confirm: "Are you sure?" }
+          - if can? :update, album
+            | |
+            = link_to 'Edit', edit_user_album_path(@user, album)
+          - if can? :destroy, album
+            | |
+            = link_to 'Destroy', user_album_path(@user, album), method: :delete, data: { confirm: "Are you sure?" }
       .col-md-3
         .album-photo
           = link_to new_user_album_path(@user)

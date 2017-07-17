@@ -3,7 +3,7 @@
   .form-inputs
     = f.input :title
     = f.input :description, as: :text
-    = f.input :tags, as: :text
+    = f.input :tags, as: :text, input_html: { value: @photo.tags.map(&:name).join(' ') }
     = f.input :picture, as: :file
   .form-actions
     = f.button :submit

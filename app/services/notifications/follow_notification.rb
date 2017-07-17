@@ -1,8 +1,7 @@
 class Notifications::FollowNotification < Notifications::AbstractNotification
-  def initialize(followership)
-    @receiver = User.find(followership.followed_id)
-    @sender = User.find(followership.follower_id)
-    @followership = followership
+  def initialize(followership, current_user)
+    @receiver = followership
+    @sender = current_user
   end
 
   def notify
@@ -10,11 +9,7 @@ class Notifications::FollowNotification < Notifications::AbstractNotification
     NotificationChannel.broadcast_to(receiver, {
         icon: sender.avatar.url,
         name: sender.first_name + " " + sender.last_name,
-        text: 'Now follow you',
+        text: 'Now follow you'
     })
   end
-
-  private
-
-  attr_reader :comment
 end

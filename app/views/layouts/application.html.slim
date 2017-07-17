@@ -17,9 +17,9 @@ html
               span.sr-only Toggle navigation
             a.navbar-brand href="/"
               img alt="Pictagram logo" src="/assets/logo.png"
-          = form_tag(user_albums_path(current_user), id: "search-form", class: "navbar-form navbar-left") do
+          = form_tag(search_path, :method => "get", id: "search-form", class: "navbar-form navbar-left", ) do
             .form-group
-              = text_field_tag :search, params[:search], class: "form-control"
+              = text_field_tag :search, params[:search], class: "form-control", autocomplete: :off
               button.btn.btn-primary type="submit"
                 span.glyphicon.glyphicon-search aria-hidden="true"
           #navbar2.navbar-collapse.collapse
@@ -27,7 +27,7 @@ html
               li
                 = link_to("Home", root_path)
               li
-                = link_to("My Profile", user_albums_path(current_user)) if current_user.present?
+                = link_to("My profile", user_albums_path(current_user)) if current_user.present?
               - if user_signed_in?
                 li.dropdown
                   a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" role="button"

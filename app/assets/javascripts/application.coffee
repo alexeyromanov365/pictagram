@@ -6,6 +6,6 @@
 #= require_tree .
 #= require iziToast
 
-jQuery ->
+$(document).on 'turbolinks:load', ->
   $('#search').autocomplete
     source: "/search_suggestions"

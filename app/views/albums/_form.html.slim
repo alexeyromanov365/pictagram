@@ -3,6 +3,6 @@
   .form-inputs
     = f.input :title
     = f.input :description, as: :text
-    = f.input :tags, as: :text
+    = f.input :tags, as: :text, input_html: { value: @album.tags.map(&:name).join(' ') }
   .form-actions
     = f.button :submit

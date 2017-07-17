@@ -1,10 +1,12 @@
 h1 = @tag.name
 - if @tag.albums.empty?
-  h2 No albums
+  h3 No albums
 - else
+  h2 Albums:
   = render @tag.albums
 
 - if @tag.photos.empty?
   h2 No photos
 - else
+  h2 Photos:
   = render @tag.photos

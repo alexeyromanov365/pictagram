@@ -10,7 +10,8 @@
     b = @user.email
     br
     b = @photo.description
-    br
+    .div
+      = raw @photo.tags.map(&:name).map{ |t| link_to t, tag_path(t) }.join(" ")
     .comments
       = render @photo.comments
   .comment-add

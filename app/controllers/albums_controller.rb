@@ -2,13 +2,10 @@ class AlbumsController < ApplicationController
   before_action :set_user
   before_action :set_album, only: [:show, :edit, :update, :destroy]
   respond_to :html, :json
+  after_action :update_rake_operations, only: [:create, :update, :destroy]
 
   def index
-    if params[:search].present?
-      @albums = Album.search(params[:search])
-    else
-      @albums = @user.albums
-    end
+    @albums = @user.albums
   end
 
   def show
@@ -50,5 +47,12 @@ class AlbumsController < ApplicationController
 
   def album_params
     params.require(:album).permit(:title, :description)
+  end
+
+  def update_rake_operations
+    task = "search_suggestions:index"
+    Rake::Task[task].reenable
+    SearchSuggestion.destroy_all
+    Rake::Task[task].invoke
   end
 end

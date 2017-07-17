@@ -1,8 +1,7 @@
 class SearchSuggestion < ApplicationRecord
-  attr_accessor :popularity, :term
 
   def self.terms_for(prefix)
-    suggestions = where("term iLIKE ?", "#{prefix}_%")
+    suggestions = where("term LIKE ?", "#{prefix}%")
     suggestions.order("popularity desc").limit(10).pluck(:term)
   end
 
@@ -16,6 +15,7 @@ class SearchSuggestion < ApplicationRecord
   def self.index_term(term)
     where(term: term.downcase).first_or_initialize.tap do |suggestion|
       suggestion.increment :popularity
+      suggestion.save
     end
   end
 end

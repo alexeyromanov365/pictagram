@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
-  resources :search_suggestions
+  get 'search_suggestions', to: 'search_suggestions#index'
   devise_for :users, :controllers => { registrations: 'registrations' }
 
   devise_scope :user do
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   get 'person/profile'
+  get 'person/followers'
   get '/users/:user_id', to: 'albums#index'
 
   root to: "person#profile"
