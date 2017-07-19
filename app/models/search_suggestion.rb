@@ -10,6 +10,10 @@ class SearchSuggestion < ApplicationRecord
       index_term(album.title)
       album.title.split.each { |t| index_term(t) }
     end
+    Tag.find_each do |tag|
+      index_term(tag.name)
+      tag.name.split.each { |t| index_term(t) }
+    end
   end
 
   def self.index_term(term)

@@ -3,9 +3,9 @@ h1
   = " " + @user.email + " Albums"
   div
     small
-      = link_to "Followers: ", relations_user_path(@user)
+      = link_to "Followers: ", person_followers_path(@user)
       = @user.followers.count
-      = link_to " Following: ", relations_user_path(@user)
+      = link_to " Following: ", person_following_path(@user)
       = @user.following.count
   div
     - if current_user.id != @user.id
@@ -38,9 +38,10 @@ table
           - if can? :destroy, album
             | |
             = link_to 'Destroy', user_album_path(@user, album), method: :delete, data: { confirm: "Are you sure?" }
-      .col-md-3
-        .album-photo
-          = link_to new_user_album_path(@user)
-            = image_tag("/assets/photo_album.png", class: 'img-responsive')
-            p New album
+      - if can? :create, Album.new( user: @user )
+        .col-md-3
+          .album-photo
+            = link_to new_user_album_path(@user)
+              = image_tag("/assets/photo_album.png", class: 'img-responsive')
+              p New album
 br

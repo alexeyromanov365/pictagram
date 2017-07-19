@@ -12,6 +12,8 @@ p
   strong Album tags:
   = " "
   = raw @album.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'tag tag-primary' }.join(' ')
-= link_to "New photo", new_user_album_photo_path(@user, @album)
-p
-= link_to 'Edit album', edit_user_album_path(@user, @album)
+- if can? :create, @album
+  = link_to "New photo", new_user_album_photo_path(@user, @album)
+  p
+- if can? :edit, @album
+  = link_to 'Edit album', edit_user_album_path(@user, @album)

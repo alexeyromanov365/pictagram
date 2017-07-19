@@ -1,0 +1,19 @@
+- if @followers.present?
+  .container-fluid
+    .row
+      .div
+        = "Followers: "
+      .follow
+        - @followers.each do |follow|
+          .follow-div
+            = link_to user_albums_path(follow)
+              = image_tag(follow.avatar.url(:small), class: 'user-avatar') if follow.avatar?
+              = " " + follow.first_name + " "
+              = follow.last_name + " "
+              = follow.email + ' '
+              = " followers: "
+              = follow.followers.count
+              = " following: "
+              = follow.following.count
+- else
+  h2 No followers

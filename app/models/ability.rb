@@ -3,12 +3,16 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-    if user.has_attribute?(:admin)
+    if user.admin?
       can :manage, :all
-    elsif user.has_attribute?(:user)
-      can :manage, :all
-    elsif user.has_attribute?(:guest)
-      can :manage, :all
+    else
+      can :read, :all
+      can :manage, Album do |album|
+        album.user == user
+      end
+      can :manage, Photo do |photo|
+        photo.album.user == user
+      end
     end
   end
 end

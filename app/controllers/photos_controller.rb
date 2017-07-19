@@ -1,9 +1,10 @@
 class PhotosController < ApplicationController
-  before_action :set_user
-  before_action :set_album
-  before_action :set_photo, only: [:show, :edit, :destroy, :update]
   respond_to :html, :json
-  protect_from_forgery
+  after_action :update_rake_operations, only: [:create, :update, :destroy]
+  before_action :authenticate_user!, except: [:show, :index]
+  load_and_authorize_resource :user
+  load_and_authorize_resource :album, through: :user
+  load_and_authorize_resource through: :album
 
   def index
     @photos = @album.photos
@@ -19,7 +20,6 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    @photo
   end
 
   def create
@@ -40,19 +40,14 @@ class PhotosController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find(params[:user_id])
-  end
-
-  def set_album
-    @album = Album.find(params[:album_id])
-  end
-
-  def set_photo
-    @photo = Photo.find(params[:id])
-  end
-
   def photo_params
-    params.require(:photo).permit(:title, :description, :picture, :album_id, :all_tags)
+    params.require(:photo).permit(:title, :description, :picture, :album_id, :all_tags, :user)
+  end
+
+  def update_rake_operations
+    task = "search_suggestions:index"
+    Rake::Task[task].reenable
+    SearchSuggestion.destroy_all
+    Rake::Task[task].invoke
   end
 end

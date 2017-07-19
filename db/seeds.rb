@@ -1,20 +1,24 @@
 User.create!(first_name: "Alexei",
-last_name: "Dmamaaassd",
+last_name: "Dagadag",
 email: "al@a.com",
 password: '123456',
 password_confirmation: "123456")
 
-User.create!(first_name: "Alex",
-last_name: "DFSasfasfdaf",
+User.create!(first_name: "Mike",
+last_name: "Maerson",
 email: "a@a.com",
 password: '123456',
 password_confirmation: "123456")
 
-User.create!(first_name: "Alexxx",
-last_name: "HJDDJADAS",
+User.create!(first_name: "Ben",
+last_name: "Stiller",
 email: "a1@a.com",
 password: '123456',
 password_confirmation: "123456")
+
+User.create!(email: "admin@example.com",
+password: "password",
+password_confirmation: "password")
 
 Album.create(title:"Title 6",
 description: "Description 4",

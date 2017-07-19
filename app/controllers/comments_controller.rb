@@ -3,6 +3,10 @@ class CommentsController < ApplicationController
   before_action :set_album
   before_action :set_photo
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource :user
+  load_and_authorize_resource :album, through: :user
+  load_and_authorize_resource :photo, through: :album
+  load_and_authorize_resource through: :photo
 
   def index
     @comments = @photo.comments

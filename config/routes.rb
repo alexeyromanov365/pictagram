@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   end
 
   get 'person/profile'
-  get 'person/followers'
+  get 'person/:user_id/followers', to: 'person#followers', as: 'person_followers'
+  get 'person/:user_id/following', to: 'person#following', as: 'person_following'
   get '/users/:user_id', to: 'albums#index'
 
   root to: "person#profile"
