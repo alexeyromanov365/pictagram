@@ -11,11 +11,6 @@ class ApplicationController < ActionController::Base
     redirect_to main_app.root_url, :alert => exception.message
   end
 
-  #def current_admin_user
-  #  binding.pry
-  #  current_user
-  #end
-
   def after_sign_in_path_for(resource)
     person_profile_path
   end
