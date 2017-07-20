@@ -11,8 +11,13 @@ class ApplicationController < ActionController::Base
     redirect_to main_app.root_url, :alert => exception.message
   end
 
+  #def current_admin_user
+  #  binding.pry
+  #  current_user
+  #end
+
   def after_sign_in_path_for(resource)
-    person_profile_path(current_user)
+    person_profile_path
   end
 
   def after_sign_out_path_for(resource_or_scope)
@@ -21,5 +26,9 @@ class ApplicationController < ActionController::Base
 
   def current_ability
     @current_ability ||= Ability.new(current_user)
+  end
+
+  def access_denied(*args)
+    head :forbidden
   end
 end

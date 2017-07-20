@@ -4,7 +4,7 @@ ActiveAdmin.register_page "Dashboard" do
 
   content title: "Recent Photos" do
     section "Recent Photos" do
-      table_for Photo.order("created_at desc").limit(10) do
+      table_for Photo.order("created_at desc").limit(15) do
         column :title
         column :description
         column :user do |photo|
