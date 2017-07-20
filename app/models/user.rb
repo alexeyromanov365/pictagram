@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   mount_uploader :avatar, AvatarUploader
@@ -31,9 +31,5 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
-  end
-
-  def admin?
-
   end
 end
