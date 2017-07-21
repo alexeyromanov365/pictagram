@@ -4,6 +4,7 @@ class RelationshipsController < ApplicationController
     @user = User.find(params[:followed_id])
     current_user.follow(@user)
     respond_to do |format|
+      UserMailer.notify_user(@user, current_user).deliver
       Notifications::FollowNotification.new(@user, current_user).notify
       format.html { redirect_to @user }
       format.js
