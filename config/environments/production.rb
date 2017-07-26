@@ -91,7 +91,7 @@ Rails.application.configure do
 
   config.assets.unknown_asset_fallback = false
 
-  config.action_mailer.default_url_options = { host: 'ec2-13-58-163-155.us-east-2.compute.amazonaws.com' }
+  config.action_mailer.default_url_options = { host: ENV['production_host'] }
 
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
