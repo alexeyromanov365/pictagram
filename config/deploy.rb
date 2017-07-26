@@ -6,7 +6,7 @@ set :repo_url, "git@github.com:alexeyromanov365/pictagram.git"
 
 set :deploy_to, '/home/deploy/pictagram'
 
-append :linked_files, "config/database.yml", "config/secrets.yml"
+append :linked_files, "config/database.yml", "config/secrets.yml", "config/application.yml"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 
 
