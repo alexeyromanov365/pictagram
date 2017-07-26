@@ -24,5 +24,6 @@
 
 /config/application.yml
 /public/uploads/*
-/config/database.yml\nconfig/secrets.yml
+/config/database.yml
+/config/secrets.yml
 
