@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   load_and_authorize_resource :user
   load_and_authorize_resource :album, through: :user
-  load_and_authorize_resource through: :album
+  load_and_authorize_resource through: :album 
 
   def index
     @photos = @album.photos
