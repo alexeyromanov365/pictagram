@@ -23,4 +23,6 @@
 .byebug_history
 
 /config/application.yml
-/public/uploads/*config/database.yml\nconfig/secrets.yml
+/public/uploads/*
+/config/database.yml\nconfig/secrets.yml
+
