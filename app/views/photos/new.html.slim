@@ -1,5 +1,5 @@
 = link_to :back
-  = image_tag image_path("return.png", size: "30x30" , class: 'img-responsive')
+  = image_tag("return.png", size: "30x30" , class: 'img-responsive')
 h1 New Photo
 = render 'form', photo: @photo, path: user_album_photos_path
 

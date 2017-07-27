@@ -25,7 +25,7 @@
                   = link_to user_album_photos_path(album.user, album)
                     = image_tag(album.photos.sample.picture.small.url, class: 'img-responsive')
                 - else
-                  = image_tag image_path("empty_album.png", class: 'img-responsive')
+                  = image_tag("empty_album.png", class: 'img-responsive')
                 br
       - if @tags.present?
         h3 Tags:

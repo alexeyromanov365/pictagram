@@ -9,4 +9,4 @@
     = image_tag(album.photos.sample.picture.small.url, class: 'img-responsive')
 - else
   = link_to new_user_album_photo_path(@user, album)
-    = image_tag image_path("empty_album.png", class: 'img-responsive')
+    = image_tag("empty_album.png", class: 'img-responsive')
