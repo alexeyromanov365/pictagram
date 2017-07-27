@@ -1,9 +1,0 @@
-development:
-  adapter: async
-
-test:
-  adapter: async
-
-production:
-  adapter: redis
-  url: redis://alexey-redis.satcua.0001.use2.cache.amazonaws.com:6379
