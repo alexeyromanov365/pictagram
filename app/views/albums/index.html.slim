@@ -17,7 +17,6 @@ h1
       - else
         = form_for(current_user.active_relationships.find_by(followed_id: @user.id), html: { method: :delete }) do |f|
           = f.submit"Unfollow", class: "btn btn-primary"
-
 table
   thead
     tr
@@ -42,6 +41,6 @@ table
         .col-md-3
           .album-photo
             = link_to new_user_album_path(@user)
-              = image_tag("/assets/photo_album.png", class: 'img-responsive')
+              = image_tag image_path("photo_album.png", class: 'img-responsive')
               p New album
 br
