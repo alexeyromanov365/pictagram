@@ -3,6 +3,6 @@ class Photo < ApplicationRecord
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
   has_many :comments, dependent: :destroy
-  validates :picture, :title, presence: true
+  validates :title, presence: true
   mount_uploader :picture, PhotoUploader
 end
