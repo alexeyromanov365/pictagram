@@ -1,4 +1,4 @@
-h1
+.text-size
   = image_tag(@user.avatar.url, class: 'img-circle') if @user.avatar?
   = " " + @user.email + " Albums"
   div
@@ -23,6 +23,11 @@ table
       th colspan="4"
   .container-fluid
     .row
+      - if can? :create, Album.new( user: @user )
+        .col-md-3
+          .album-photo
+            = link_to new_user_album_path(@user)
+              = image_tag("photo_album.png", class: 'album-add')
       - @albums.each do |album|
         .col-md-3
           br
@@ -37,10 +42,4 @@ table
           - if can? :destroy, album
             | |
             = link_to 'Destroy', user_album_path(@user, album), method: :delete, data: { confirm: "Are you sure?" }
-      - if can? :create, Album.new( user: @user )
-        .col-md-3
-          .album-photo
-            = link_to new_user_album_path(@user)
-              = image_tag("photo_album.png", class: 'img-responsive')
-              p New album
 br

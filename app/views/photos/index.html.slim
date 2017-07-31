@@ -8,26 +8,24 @@ h5
   = raw @album.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: "btn btn-primary btn-sm" }.join(' ')
 .container-fluid
   .row
-    - @photos.each do |photo|
-      .col-md-3
-        br
-        = photo.title
-        .row
-          .col-md-3
-            = link_to('#', id: photo.id, 'data-url': user_album_photo_path(@user, @album, photo), 'data-toggle': 'modal', 'data-target': '#photo-modal')
-              = image_tag(photo.picture.url(:small), class: 'photo-img', id: photo.id)
-        - if can? :edit, photo
-          = link_to 'Edit', edit_user_album_photo_path(@user, @album, photo)
-          | |
-        - if can? :destroy, photo
-          = link_to 'Destroy', user_album_photo_path(@user, @album, photo), method: :delete, data: { confirm: 'Are you sure?' }
     - if can? :create, Photo.new(album: @album)
       .col-md-3
         .photo-style
           = link_to new_user_album_photo_path(@user, @album)
-            = image_tag("add_picture.jpg", class: 'img-responsive')
-            p New photo
-br
+            = image_tag("add_picture.png", class: 'photo-add')
+    - @photos.each do |photo|
+      .col-md-3
+        div
+        = photo.title
+        div
+          = link_to('#', id: photo.id, 'data-url': user_album_photo_path(@user, @album, photo), 'data-toggle': 'modal', 'data-target': '#photo-modal')
+            = image_tag(photo.picture.url(:small), class: 'photo-img', id: photo.id)
+        div
+          - if can? :edit, photo
+            = link_to 'Edit', edit_user_album_photo_path(@user, @album, photo)
+            | |
+          - if can? :destroy, photo
+            = link_to 'Destroy', user_album_photo_path(@user, @album, photo), method: :delete, data: { confirm: 'Are you sure?' }
 .modal.fade id=("photo-modal") aria-hidden="true" aria-labelledby="photo" role="dialog" tabindex="-1"
   .modal-dialog.modal-lg role="document"
     .modal-content

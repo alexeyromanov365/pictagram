@@ -1,7 +1,7 @@
 class SearchSuggestion < ApplicationRecord
 
   def self.terms_for(prefix)
-    suggestions = where("term LIKE ?", "#{prefix}%")
+    suggestions = where("term iLIKE ?", "#{prefix}%")
     suggestions.order("popularity desc").limit(10).pluck(:term)
   end
 
