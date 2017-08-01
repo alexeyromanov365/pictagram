@@ -26,8 +26,6 @@ class AlbumsController < ApplicationController
 
   def update
     if @album.update(album_params) && @album.tags = TagService.new(params[:album][:tags]).tags
-    # @album.tags = TagService.new(params[:album][:tags]).tags
-    # respond_with @album.update(album_params), location: [@user, @album]
       respond_with @album, location: [@user, @album]
     end
   end
