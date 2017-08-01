@@ -15,6 +15,9 @@ class Ability
         photo.album.user == user
       end
       can :create, Comment
+      can :destroy, Comment do |comment|
+        comment.user == user
+      end
     end
   end
 end

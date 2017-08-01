@@ -3,9 +3,12 @@
   = " " + @user.email + " Albums"
   div
     small
-      = link_to "Followers: ", person_followers_path(@user)
+      = link_to "Followers", person_followers_path(@user)
+      = ': '
       = @user.followers.count
-      = link_to " Following: ", person_following_path(@user)
+      = ' '
+      = link_to "Following", person_following_path(@user)
+      = ': '
       = @user.following.count
   div
     - if current_user.id != @user.id
@@ -31,7 +34,7 @@ table
       - @albums.each do |album|
         .col-md-3
           br
-          div
+          .album-overflow
             = album.title
           div
             = render partial: 'preview', locals: { album: album }

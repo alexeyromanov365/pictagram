@@ -1,25 +1,25 @@
 .modal-header
-  = @photo.title
-  button.close aria-label="Close" data-dismiss="modal" type="button"
-    span aria-hidden="true"  ×
-.modal-body
+  div
+    = @photo.title
+    button.close aria-label="Close" data-dismiss="modal" type="button"
+      span aria-hidden="true"  ×
   .col-md-8.photo-picture
-    = image_tag(@photo.picture.url, class: 'photo-img')
+    = image_tag(@photo.picture.url, class: 'img-responsive')
   .col-md-4
     = image_tag(@user.avatar.url(:small), class: 'user-avatar') if @user.avatar?
-    b = @user.email
-    br
-    b = @photo.description
-    .div
+    div
+      b = @user.email
+    div
+      b = @photo.description
+    div
       = raw @photo.tags.map(&:name).map{ |t| link_to t, tag_path(t) }.join(" ")
     .comments
       = render @photo.comments
-  .comment-add
     = simple_form_for(:comment, url: user_album_photo_comments_path(@user, @album, @photo), class: 'form-inline', remote: true) do |f|
       = f.error_notification
       .form-inputs
         = f.input :content, as: :text, label: false
       .form-actions
         = f.button :submit, value: "Save comment"
-  .clearfix
+    .clearfix
 

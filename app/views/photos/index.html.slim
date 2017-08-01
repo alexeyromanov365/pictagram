@@ -1,11 +1,13 @@
 = link_to user_albums_path
   = image_tag("return.png", size: "30x30" , class: 'img-responsive')
-h3
-  = @album.title
-h4
-  = @album.description
-h5
+.album-title
+  = 'Album title: ' + @album.title
+.album-descr
+  = 'Album description: ' + @album.description
+div
+  = 'Album tags: '
   = raw @album.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: "btn btn-primary btn-sm" }.join(' ')
+br
 .container-fluid
   .row
     - if can? :create, Photo.new(album: @album)

@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
   load_and_authorize_resource :album, through: :user
   load_and_authorize_resource :photo, through: :album
   load_and_authorize_resource through: :photo
+  respond_to :html, :xml, :json
 
   def index
     @comments = @photo.comments
@@ -40,7 +41,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    respond_with @comment, location: [@album, @photo, @comment]
+    respond_with @comment, location: user_album_photos_path(@user, @album)
   end
 
   private

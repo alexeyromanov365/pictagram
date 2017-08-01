@@ -25,8 +25,11 @@ class AlbumsController < ApplicationController
   end
 
   def update
-    @album.tags = TagService.new(params[:album][:tags]).tags
-    respond_with @album.update(album_params), location: [@user, @album]
+    if @album.update(album_params) && @album.tags = TagService.new(params[:album][:tags]).tags
+    # @album.tags = TagService.new(params[:album][:tags]).tags
+    # respond_with @album.update(album_params), location: [@user, @album]
+      respond_with @album, location: [@user, @album]
+    end
   end
 
   def destroy
@@ -47,3 +50,14 @@ class AlbumsController < ApplicationController
     Rake::Task[task].invoke
   end
 end
+
+
+  # def update
+  #   if @album.update_attributes(album_params) && @album.tags = TagService.new(params[:album][:tags]).tags
+  #     flash[:success] = "Album was successfully updated"
+  #     redirect_to user_album_path(@user, @album)
+  #   else
+  #     flash[:alert] = "Error updating album"
+  #     render "edit"
+  #   end
+  # end

@@ -3,6 +3,10 @@
   .commenter-info
     .leftcol
       b = comment.user.email
+    - if can? :destroy, comment
+	    .right-delete
+	    	= link_to(user_album_photo_comment_path(comment.photo.album.user, comment.photo.album, comment.photo, comment), method: :delete)
+	    	 = image_tag('delete.png')
     .rightcol
       = time_ago_in_words(comment.created_at) + " ago"
   .commenter-info2
