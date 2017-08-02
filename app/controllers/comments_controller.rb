@@ -41,7 +41,9 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    respond_with @comment, location: user_album_photos_path(@user, @album)
+    respond_with @comment do |format|
+      format.html { redirect_back(fallback_location: root_path) }
+    end
   end
 
   private

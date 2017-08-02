@@ -37,7 +37,11 @@ gem 'capistrano-rbenv', '~> 2.1'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl', '~> 4.8'
+  gem 'rspec-its', '~> 1.2'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'simplecov', '~> 0.14.1'
 end
 
 group :development do

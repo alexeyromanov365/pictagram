@@ -37,7 +37,7 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
-  config.action_mailer.default_url_options = { host: 13.58.163.155 }
+  config.action_cable.allowed_request_origins = ['http://0.0.0.0:3000']
 
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
