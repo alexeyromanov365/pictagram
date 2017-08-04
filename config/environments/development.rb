@@ -69,4 +69,7 @@ Rails.application.configure do
    :authentication       => "plain",
   :enable_starttls_auto => true
   }
+
+  config.logger = Logger.new(config.paths["log"].first, 1, 5242880)
+  
 end

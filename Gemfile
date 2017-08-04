@@ -27,7 +27,7 @@ gem 'izitoast', git: 'https://github.com/DmitryArtyomov/iziToast-rails'
 gem 'activeadmin'
 gem 'figaro'
 gem 'redis', '~>3.2'
-gem 'fog-aws'
+gem 'faker'
 
 gem 'capistrano', '~> 3.7', '>= 3.7.1'
 gem 'capistrano-rails', '~> 1.2'
@@ -38,10 +38,14 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'rspec-rails', '~> 3.5'
-  gem 'factory_girl', '~> 4.8'
+  gem 'factory_girl_rails'
   gem 'rspec-its', '~> 1.2'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', '~> 0.14.1'
+end
+
+group :test do
+  gem 'database_cleaner'
 end
 
 group :development do

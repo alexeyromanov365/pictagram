@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-describe Album do 
-	it "should do smth" do
-		(1+1).should == 2
+RSpec.describe Album, type: :model do
+	context 'attribute validators' do
+		subject { build(:album) }
+		include_examples 'allowed empty validation', :description 
 	end
 end
