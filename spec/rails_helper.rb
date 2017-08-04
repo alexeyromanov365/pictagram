@@ -6,7 +6,6 @@ SimpleCov.start do
   add_group "Controllers", "/controllers/"
   add_group "Services", "/services/"
   add_group "Mailers", "/mailers/"
-  add_group "Serializers", "/serializers/"
   track_files "app/{controllers,models,services,serializers,mailers}/**/*.rb"
 end
 require 'spec_helper'

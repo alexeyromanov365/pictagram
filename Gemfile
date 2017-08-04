@@ -40,7 +40,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
   gem 'rspec-its', '~> 1.2'
-  gem 'shoulda-matchers', '~> 3.1'
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'simplecov', '~> 0.14.1'
 end
 

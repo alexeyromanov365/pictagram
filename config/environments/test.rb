@@ -54,4 +54,6 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.logger = Logger.new(config.paths["log"].first, 1, 5242880)
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
