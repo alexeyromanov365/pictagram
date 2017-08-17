@@ -1,6 +1,5 @@
 class PhotosController < ApplicationController
   respond_to :html, :json
-  after_action :update_rake_operations, only: [:create, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index]
   load_and_authorize_resource :user
   load_and_authorize_resource :album, through: :user
@@ -47,12 +46,5 @@ class PhotosController < ApplicationController
 
   def photo_params
     params.require(:photo).permit(:title, :description, :picture, :album_id, :all_tags)
-  end
-
-  def update_rake_operations
-    task = "search_suggestions:index"
-    Rake::Task[task].reenable
-    SearchSuggestion.destroy_all
-    Rake::Task[task].invoke
   end
 end

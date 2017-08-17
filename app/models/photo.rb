@@ -8,7 +8,8 @@ class Photo < ApplicationRecord
   validate :album_photos_limit, on: :create
 
   mount_uploader :picture, PhotoUploader
-  validates :picture, :title, presence: true
+  validates :picture, presence: true
+  validates :title, presence: true
 	
   private
 

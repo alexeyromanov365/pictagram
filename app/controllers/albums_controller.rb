@@ -1,6 +1,5 @@
 class AlbumsController < ApplicationController
 	respond_to :html, :json
-	after_action :update_rake_operations, only: [:create, :update, :destroy]
 	load_and_authorize_resource :user
 	load_and_authorize_resource :album, through: :user
 	before_action :authenticate_user!, except: [:show, :index]
@@ -20,8 +19,13 @@ class AlbumsController < ApplicationController
 	end
 
 	def create
-		@album.tags = TagService.new(params[:album][:tags]).tags if @album.save
-		respond_with @album, location: [@user, @album]
+		if @album.save
+			@album.tags = TagService.new(params[:album][:tags]).tags
+			respond_with @album, location: [@user, @album]
+		else
+			flash[:alert] = @album.errors.full_messages_for(:base).to_sentence
+			render :new
+		end		
 	end
 
 	def update
@@ -39,12 +43,5 @@ class AlbumsController < ApplicationController
 
 	def album_params
 		params.require(:album).permit(:title, :description, :photos_count)
-	end
-
-	def update_rake_operations
-		task = "search_suggestions:index"
-		Rake::Task[task].reenable
-		SearchSuggestion.destroy_all
-		Rake::Task[task].invoke
 	end
 end
