@@ -23,9 +23,13 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = @album.photos.create(photo_params)
-    @photo.tags = TagService.new(params[:photo][:tags]).tags
-    respond_with @photo, location: [@user, @album, @photo]
+    if @photo.save
+      @photo.tags = TagService.new(params[:photo][:tags]).tags if @photo.save
+      respond_with @photo, location: [@user, @album, @photo]
+    else
+      flash[:alert] = @photo.errors.full_messages_for(:base).to_sentence
+      render :new
+    end
   end
 
   def update
@@ -42,7 +46,7 @@ class PhotosController < ApplicationController
   private
 
   def photo_params
-    params.require(:photo).permit(:title, :description, :picture, :album_id, :all_tags, :user)
+    params.require(:photo).permit(:title, :description, :picture, :album_id, :all_tags)
   end
 
   def update_rake_operations

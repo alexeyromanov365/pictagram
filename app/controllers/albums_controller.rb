@@ -38,7 +38,7 @@ class AlbumsController < ApplicationController
 	private
 
 	def album_params
-		params.require(:album).permit(:title, :description)
+		params.require(:album).permit(:title, :description, :photos_count)
 	end
 
 	def update_rake_operations

@@ -11,7 +11,7 @@ FactoryGirl.define do
 	factory :album do
 		title { Faker::Name.unique.name }
 		description { Faker::Coffee.notes }
-
+		
 		association :user, strategy: :build
 	end
 end
