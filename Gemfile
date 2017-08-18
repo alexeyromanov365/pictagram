@@ -26,7 +26,6 @@ gem 'mini_magick'
 gem 'izitoast', git: 'https://github.com/DmitryArtyomov/iziToast-rails'
 gem 'activeadmin'
 gem 'figaro'
-gem 'redis', '~>3.2'
 gem 'faker'
 
 gem 'capistrano', '~> 3.7', '>= 3.7.1'

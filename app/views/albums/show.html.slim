@@ -2,15 +2,15 @@
   = image_tag("return.png", size: "30x30" , class: 'back-icon')
 p
   strong Album title:
-  = " "
+  | &nbsp;
   = @album.title
 p
   strong Album description:
-  = " "
+  | &nbsp;
   = @album.description
 p
   strong Album tags:
-  = " "
+  | &nbsp;
   = raw @album.tags.map(&:name).map{ |t| link_to t, tag_path(t), class: 'tag tag-primary' }.join(' ')
 - if can? :create, @album
   = link_to "New photo", new_user_album_photo_path(@user, @album)

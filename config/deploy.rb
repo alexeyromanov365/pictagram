@@ -1,5 +1,6 @@
 # config valid only for current version of Capistrano
 lock "3.8.2"
+require "whenever/capistrano"
 
 set :application, "pictagram"
 set :repo_url, "git@github.com:alexeyromanov365/pictagram.git"

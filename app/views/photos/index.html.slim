@@ -25,7 +25,7 @@ br
         div
           - if can? :edit, photo
             = link_to 'Edit', edit_user_album_photo_path(@user, @album, photo)
-            | |
+            | &verbar;
           - if can? :destroy, photo
             = link_to 'Destroy', user_album_photo_path(@user, @album, photo), method: :delete, data: { confirm: 'Are you sure?' }
 .modal.fade id=("photo-modal") aria-hidden="true" aria-labelledby="photo" role="dialog" tabindex="-1"

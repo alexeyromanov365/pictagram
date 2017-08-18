@@ -1,13 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :set_user
-  before_action :set_album
-  before_action :set_photo
-  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :json
   load_and_authorize_resource :user
   load_and_authorize_resource :album, through: :user
   load_and_authorize_resource :photo, through: :album
   load_and_authorize_resource through: :photo
-  respond_to :html, :xml, :json
 
   def index
     @comments = @photo.comments
@@ -29,8 +25,8 @@ class CommentsController < ApplicationController
     if @comment.save
       Notifications::CommentNotification.new(@comment).notify
       respond_to do |format|
-        format.js
         format.html { redirect_to [@album, @photo] }
+        format.js
       end
     end
   end
@@ -48,23 +44,8 @@ class CommentsController < ApplicationController
 
   private
 
-  def set_user
-    @user = User.find(params[:user_id])
-  end
-
-  def set_album
-    @album = Album.find(params[:album_id])
-  end
-
-  def set_photo
-    @photo = Photo.find(params[:photo_id])
-  end
-
-  def set_comment
-    @comment = Comment.find(params[:id])
-  end
-
   def comment_params
     params.require(:comment).permit(:user_id, :photo_id, :content)
   end
 end
+
