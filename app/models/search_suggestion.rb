@@ -23,3 +23,4 @@ class SearchSuggestion < ApplicationRecord
 		end
 	end
 end
+
