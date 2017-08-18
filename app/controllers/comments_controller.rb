@@ -48,3 +48,4 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:user_id, :photo_id, :content)
   end
 end
+
