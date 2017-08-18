@@ -4,11 +4,11 @@
   div
     small
       = link_to "Followers", person_followers_path(@user)
-      = ': '
+      | &colon;&nbsp;
       = @user.followers.count
-      = ' '
+      | &nbsp;
       = link_to "Following", person_following_path(@user)
-      = ': '
+      | &colon;&nbsp;
       = @user.following.count
   div
     - if current_user.id != @user.id
@@ -40,9 +40,9 @@ table
             = render partial: 'preview', locals: { album: album }
           = link_to 'Show', user_album_path(@user, album)
           - if can? :update, album
-            | |
+            | &verbar;
             = link_to 'Edit', edit_user_album_path(@user, album)
           - if can? :destroy, album
-            | |
+            | &verbar;
             = link_to 'Destroy', user_album_path(@user, album), method: :delete, data: { confirm: "Are you sure?" }
 br

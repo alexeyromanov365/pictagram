@@ -9,7 +9,7 @@ h2
             .card-left
               - if photo.album.user.avatar?
                 = image_tag(photo.album.user.avatar.url(:small))
-                = " "
+                | &nbsp;
               = link_to user_albums_path(photo.album.user)
                 b = photo.album.user.email
               span.pl-05 = photo.title
