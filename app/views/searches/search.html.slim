@@ -12,7 +12,7 @@
         .row
           - @albums.each do |album|
             .col-md-3
-              div
+              .album-overflow
                 = album.title
               div
                 - if album.photos.any? && album.photos.count > 3
